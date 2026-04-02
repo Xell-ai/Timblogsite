@@ -1,0 +1,848 @@
+/* =====================
+   CSS VARIABLES & RESET
+   ===================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cream:    #f0ead8;
+  --dark:     #1a1a18;
+  --gold:     #c9a84c;
+  --gold-dark:#b8963a;
+  --text:     #2c2c28;
+  --muted:    #7a7a6e;
+  --card-bg:  #ffffff;
+  --border:   #d8d0bc;
+}
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  line-height: 1.6;
+
+
+}
+
+
+main {
+  flex: 1;           /* This pushes the footer to the bottom */
+}
+
+/* =====================
+   NAVIGATION
+   ===================== */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--dark);
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+
+#menu-toggle {
+  display: none;
+}
+
+  /* Hamburger hidden on desktop */
+  .hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: var(--dark);
+  display: block;
+}
+
+
+
+@media (max-width: 768px) {
+
+  /* Hide checkbox */
+  #menu-toggle {
+    display: none;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: flex;
+    font-size: 1.2rem;
+    color: var(--dark);
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  /* Side menu */
+  .nav-links {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+
+  top: 60px; /* 👈 key fix */
+  left: -100%;
+  height: calc(100vh - 60px); /* 👈 prevents overflow */
+  width: 260px;
+
+  padding: 50px 30px;
+  gap: 30px;
+
+  transition: left 0.4s ease;
+  z-index: 1000;
+
+  background-color: rgba(134, 121, 78, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-right: 1px solid rgba(216, 155, 25, 0.185);
+}
+
+  /* Links */
+  .nav-links a {
+    letter-spacing: 0.08em; /* FIXED */
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Slide in */
+  #menu-toggle:checked ~ .nav-links {
+    left: 0;
+  }
+}
+
+
+
+
+
+/* =====================
+   HERO
+   ===================== */
+
+.hero {
+  text-align: center;
+  padding: 72px 24px 60px;
+  max-width: 680px;
+  margin: 100px auto;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  line-height: 1.15;
+  color: var(--dark);
+  margin-bottom: 28px;
+}
+
+.hero-tagline {
+  font-family: 'EB Garamond', serif;
+  font-style: serif;
+  font-size: 1.2rem;
+  color: var(--dark);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.hero-tagline::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+  margin: 10px auto 0;
+}
+
+
+.hero-tagline a {
+  color: var(--gold);
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+}
+
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.hero-btn {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 40px;
+  margin-top: 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.hero-btn:hover {
+  background: var(--gold-dark);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =====================
+   SECTION WRAPPER
+   ===================== */
+
+.section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 32px 60px;
+}
+
+.section .section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: var(--gold);
+  margin-bottom: 32px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold);
+  display: flex;
+}
+
+/* =====================
+   SHARED: TAG BADGE
+   ===================== */
+
+.tag {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  font-weight: 500;
+}
+
+/* =====================
+   SHARED: IMG PLACEHOLDER
+   ===================== */
+
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #b5ac90 0%, #8a8470 60%, #6e6a5a 100%);
+  display: block;
+  position: relative;
+}
+
+.img-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.18) 100%);
+}
+
+/* =====================
+   SHARED: READ LINK
+   ===================== */
+
+.read-link {
+  color: var(--gold);
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+  transition: text-decoration 0.2s;
+}
+
+.read-link:hover {
+  text-decoration: underline;
+}
+
+/* =====================
+   SHARED: IMG WRAP
+   ===================== */
+
+.featured-grid .card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is the "magic" property that crops instead of stretching */
+  display: block;
+}
+
+
+/* =====================
+   FEATURED GRID
+   ===================== */
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* ====================== Big Card ====================== */
+.card-big {
+  background: var(--card-bg);
+  border-radius: 8px;          /* optional: cleaner look */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-big .img-wrap {
+  height: 320px;               /* adjust as needed */
+  position: relative;
+  overflow: hidden;
+}
+
+.card-big .card-img,
+.card-big img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-big .card-body {
+  padding: 24px;
+  flex: 1;
+}
+
+.card-big h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+  color: var(--dark);
+}
+
+.card-big p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ====================== Small Cards Stack ====================== */
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;                   /* increased a bit for better spacing */
+}
+
+.card-small {
+  background: var(--card-bg);
+  display: grid;
+  grid-template-columns: 130px 1fr;   /* fixed image width */
+  gap: 0;
+  overflow: hidden;                   /* ← Important fix */
+  border-radius: 8px;
+  height: 150px;                      /* fixed height prevents white overflow */
+}
+
+.card-small .img-wrap {
+  width: 100%;
+  height: 100%;                       /* full height of the card */
+  position: relative;
+  overflow: hidden;                   /* ← Prevents image overflow */
+}
+
+.card-small .card-img,
+.card-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-small .card-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-small h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  color: var(--dark);
+  line-height: 1.3;
+}
+
+.card-small p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* "Read →" link styling (optional) */
+.card-small .read-link,
+.card-big .read-link {
+  color: #b38b5d;           /* your gold/earthy color */
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-top: -10px;
+}
+
+
+
+
+
+/*====================
+   CAROUSEL
+   ===================== */
+
+.carousel-wrap {
+  position: relative;
+  max-width: 100%;
+  margin: 40px auto;
+  overflow: hidden;
+  padding: 0 60px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.8s ease-in-out;   /* smoother transition */
+  gap: 24px;
+}
+
+/* Main Card - Exactly 3 cards visible */
+.card-carousel {
+  min-width: calc((100% - 48px) / 3);
+  max-width: 360px;                    /* Controls overall card size */
+  background: #fff;
+  border-radius: 4px;                 /* Slightly softer corners */
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.img-wrap {
+  position: relative;
+  height: 220px;
+  width: 100%;
+  background: #f0f0f0;
+  flex-shrink: 0;
+}
+
+.img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.card-body {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.4rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.card-body p {
+  color: #555;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  font-size: 0.97rem;
+}
+
+/* Navigation Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;           /* Made invisible */
+  color: transparent;                /* Hide the arrow */
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Optional: Show subtle hover effect so users know they can click */
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.15);   /* Light overlay on hover */
+  color: rgba(255, 255, 255, 0.8);   /* Slightly visible arrow on hover */
+}
+
+
+
+.carousel-track {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.carousel-track:active {
+  cursor: grabbing;
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .card-carousel {
+    min-width: calc((100% - 24px) / 2);   /* 2 cards */
+  }
+}
+
+@media (max-width: 700px) {
+  .card-carousel {
+    min-width: 100%;                      /* 1 card on mobile */
+  }
+  .carousel-wrap {
+    padding: 0 50px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================
+   LATEST CONTENTS
+   ===================== */
+
+
+.latest-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 32px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+}
+
+.latest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;                    /* increased spacing */
+}
+
+.card-latest {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  background: var(--card-bg);
+  overflow: hidden;             /* Important: prevents overflow */
+  border-radius: 10px;          /* Much more curved corners */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.card-latest:hover {
+  transform: translateY(-4px);
+}
+
+/* Image container */
+.card-latest .img-wrap {
+  height: 100%;                 /* Full height of the card */
+  position: relative;
+  overflow: hidden;             /* Prevents image overflow */
+  min-height: 10px;
+}
+
+.card-latest img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;            /* Best for preventing distortion */
+  display: block;
+}
+
+/* Tag */
+.tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Card body */
+.card-latest .card-body {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-latest h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.35rem;
+  margin-bottom: 14px;
+  color: var(--dark);
+  line-height: 1.35;
+}
+
+.card-latest p {
+  font-size: 0.94rem;
+  line-height: 1.78;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.read-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.read-link:hover {
+  text-decoration: underline;
+}
+
+
+/* =====================
+   SEE MORE BUTTON
+   ===================== */
+
+.see-more-wrap {
+  text-align: center;
+  padding: 20px 0 60px;
+}
+
+.btn-see-more {
+  background: var(--gold);
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 60px;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-see-more:hover {
+  background: var(--gold-dark);
+}
+
+
+
+
+
+
+
+/* =====================
+   FOOTER - Centered on all devices
+   ===================== */
+footer {
+  background: var(--dark);
+  color: #aaa99a;
+  padding: 40px 20px;           /* Good padding for mobile */
+  width: 100%;
+  margin-top: 1px;
+  box-sizing: border-box;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;       /* Stack vertically by default */
+  align-items: center;          /* Center horizontally */
+  gap: 12px;                    /* Space between lines */
+  text-align: center;
+}
+
+/* Individual styles */
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #e8e0cc;
+  letter-spacing: 0.04em;
+}
+
+.footer-copy {
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.footer-right {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* =====================
+   Desktop: Make it horizontal again
+   ===================== */
+@media (min-width: 768px) {
+  .footer-container {
+    flex-direction: row;        /* Switch back to horizontal on larger screens */
+    justify-content: space-between;
+    text-align: left;
+    gap: 10px;
+  }
+  
+  .footer-right {
+    text-align: right;
+  }
+}
+
+
+
+
+
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+
+@media (max-width: 700px) {
+  nav {
+    padding: 14px 20px;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-small {
+    grid-template-columns: 1fr;
+  }
+
+  .card-latest {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-track {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 0 16px 40px;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
